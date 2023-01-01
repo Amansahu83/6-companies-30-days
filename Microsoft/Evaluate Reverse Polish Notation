@@ -1,1 +1,81 @@
+class Solution {
+public:
+    int evalRPN(vector<string>& s) {
+        stack<int >st;
+        for(int i=0;i<s.size();i++)
+        {
+        
+            if(!st.empty())
+            {
+                if(s[i]=="+")
+                {
+                 long long  int first=st.top();
+                
+                  st.pop();
+                 long long int second=st.top();
+                  st.pop();
 
+                  st.push(second+first);
+                }
+                else if(s[i]=="-")
+                {
+                 long long int first=st.top();
+                  st.pop();
+                 long long int second=st.top();
+                  st.pop();
+                  st.push(second-first);
+                }
+                 else if(s[i]=="/")
+                {
+                long long int first=st.top();
+                 cout<<first;
+                  st.pop();
+                   
+                 long long int second=st.top();
+                 cout<<second;
+
+                  st.pop();
+                  st.push(second/first);
+                }
+                 else if(s[i]=="*")
+                {
+                 long long  int first=st.top();
+                  st.pop();
+                 long long int second=st.top();
+                  st.pop();
+                  st.push(second*first);
+                }
+                else
+                {
+                    int num=0;
+                    for(int j=0;j<s[i].size();j++)
+                    {
+                         if(s[i][j]>=48 && s[i][j]<=57)
+                        {
+                            cout<<s[i][j];
+                        num=num*10+(s[i][j]-48);
+                        }
+                    }
+                        if(s[i][0]=='-')st.push(-num);
+                    else st.push(num);
+                }
+            }
+            else
+            {
+                 int num=0;
+                    for(int j=0;j<s[i].size();j++)
+                    {
+                        if(s[i][j]>=48 && s[i][j]<=57)
+                        {
+                            cout<<s[i][j];
+                        num=num*10+(s[i][j]-48);
+                        }
+                    }
+                    if(s[i][0]=='-')st.push(-num);
+                    else st.push(num);
+            }
+            
+        }
+       return st.top();
+    }
+};
