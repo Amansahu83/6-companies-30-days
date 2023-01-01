@@ -52,7 +52,7 @@ public:
                     {
                          if(s[i][j]>=48 && s[i][j]<=57)
                         {
-                            cout<<s[i][j];
+                           
                         num=num*10+(s[i][j]-48);
                         }
                     }
@@ -67,7 +67,6 @@ public:
                     {
                         if(s[i][j]>=48 && s[i][j]<=57)
                         {
-                            cout<<s[i][j];
                         num=num*10+(s[i][j]-48);
                         }
                     }
