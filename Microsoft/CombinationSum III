@@ -1,0 +1,27 @@
+class Solution {
+    void solve(int ind,vector<vector<int>>&ans,vector<int>&vec,int k,int n)
+    {
+        if(n==0 && k==0)
+        {
+            ans.push_back(vec);
+            return;
+        }
+        if(n<0)return;
+          for(int i=ind;i<=9;i++)
+        {
+            if(n>=i)
+            {
+            vec.push_back(i);
+           solve(i+1,ans,vec,k-1,n-i);
+           vec.pop_back();
+            }
+        }
+    }
+public:
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>>ans;
+        vector<int>vec;
+      solve(1,ans,vec,k,n);
+      return ans;
+    }
+};
