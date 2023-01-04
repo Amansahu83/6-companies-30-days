@@ -1,0 +1,42 @@
+/* Submission is here:- https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/submissions/871403514/*/
+
+class Solution {
+public:
+#define ll long long
+    int countPaths(int n, vector<vector<int>>& roads) {
+        vector<pair<ll,ll>>adj[n];
+        for(auto i:roads)
+        {
+            adj[i[0]].push_back({i[1],i[2]});
+            adj[i[1]].push_back({i[0],i[2]});
+        }
+        priority_queue<pair<ll,ll>,vector<pair<ll,ll>>,greater<pair<ll,ll>>>pq;
+        vector<ll>timee(n,1e18),ways(n,0);
+        timee[0]=0;
+        ways[0]=1;
+        pq.push({0,0});
+        ll mod=1e9+7;
+        while(!pq.empty())
+        {
+            ll time=pq.top().first;
+            ll node=pq.top().second;
+            pq.pop();
+            for(auto i:adj[node])
+            {
+                ll newnode=i.first;
+                ll newtime=i.second;
+                if(newtime+time<timee[newnode])
+                {
+                    timee[newnode]=newtime+time;
+                    ways[newnode]=ways[node];
+                    pq.push({time+newtime,newnode});
+                }
+                else if(newtime+time==timee[newnode])
+                {
+                    ways[newnode]=(ways[newnode]+ways[node])%mod;
+                }
+            }
+        }
+        return ways[n-1]%mod;
+    }
+};
