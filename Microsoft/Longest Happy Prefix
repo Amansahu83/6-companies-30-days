@@ -1,0 +1,30 @@
+/* Submission is here:- https://leetcode.com/problems/longest-happy-prefix/submissions/805535756/*/
+//Using KMP algorithm
+class Solution {
+public:
+    string longestPrefix(string s) {
+           int index=1;
+        int len=0;
+        int n=s.size();
+        vector<int>vec(n);
+        while(index<n)
+        {
+        if(s[len]==s[index])
+        {
+            len++;
+            vec[index]=len;
+            index++;
+        }
+        else
+        {
+            if(len!=0)len=vec[len-1];
+            else
+            {
+                index++;
+            }
+        }
+            
+        }
+        return s.substr(0,len);
+    }
+};
