@@ -1,0 +1,32 @@
+/*Submission is here:-https://leetcode.com/problems/count-nice-pairs-in-an-array/submissions/873955262/*/
+
+class Solution {
+long long int reve(long long int num)
+{
+
+          int number=0;
+          while(num)
+            {
+                number=(number*10)+(num%10);
+                num/=10;
+            }
+            return number;
+}
+public:
+    int countNicePairs(vector<int>& nums) {
+        long long int mod=1e9+7;
+        // sort(nums.begin(),nums.end());
+        long long int count=0;
+        unordered_map<long long int,int>mp;
+        for(int i=0;i<nums.size();i++)
+        {
+            mp[nums[i]-reve(nums[i])]++;
+        }
+        for(auto i:mp)
+        {
+            long long int n=i.second;
+            count+=(n*(n-1)/2)%mod;
+        }
+        return count%mod;
+    }
+};
