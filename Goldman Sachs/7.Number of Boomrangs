@@ -1,0 +1,25 @@
+/* Submission is here:-https://leetcode.com/problems/number-of-boomerangs/submissions/874578605/*/
+
+class Solution {
+public:
+    int numberOfBoomerangs(vector<vector<int>>& points) {
+        int count=0;
+       for(int i=0;i<points.size();i++)
+       {
+          map<int,int>mp;
+          for(int j=0;j<points.size();j++)
+          {
+              if(i==j)continue;
+              int dist=((points[i][0]-points[j][0])*(points[i][0]-points[j][0]))+((points[i][1]-points[j][1])*(points[i][1]-points[j][1]));
+              mp[dist]++;
+          }
+          for(auto k:mp)
+          {
+              if(k.second)
+              {count+=k.second*(k.second-1);
+              }
+          }
+       } 
+       return count;
+    }
+};
