@@ -1,0 +1,13 @@
+/* Submission is here:-https://leetcode.com/problems/find-in-mountain-array/submissions/881456806/*/
+
+class Solution {
+public:
+    int findInMountainArray(int target, MountainArray mountainArr) {
+        int n=mountainArr.length();
+        for(int i=0;i<n;i++)
+        {
+         if(target==mountainArr.get(i))return i;
+        }
+        return -1;
+    }
+};
