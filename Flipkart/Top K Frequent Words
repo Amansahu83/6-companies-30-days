@@ -1,0 +1,29 @@
+/*Submission is here:-https://leetcode.com/problems/top-k-frequent-words/submissions/881798958/*/
+
+class Solution {
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        map<string,int>mp;
+        for(auto i:words)mp[i]++;
+        priority_queue<pair<int,string>>pq;
+        for(auto i:mp)
+        {
+            pq.push({-i.second,i.first});
+            if(pq.size()>k)pq.pop();
+        }
+        vector<pair<int,string>>vec;
+
+        vector<string>str;
+        while(!pq.empty())
+        {
+            vec.push_back({pq.top().first,pq.top().second});
+            pq.pop();
+        }
+        sort(vec.begin(),vec.end());
+        for(auto i:vec)
+        {
+            str.push_back(i.second);
+        }
+        return str;
+    }
+};
