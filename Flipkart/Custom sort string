@@ -1,0 +1,32 @@
+/*Submission is here:-https://leetcode.com/problems/custom-sort-string/submissions/882470366/*/
+
+class Solution {
+public:
+    string customSortString(string order, string s) {
+        unordered_map<char,int>st,st1;
+        for(auto i:s)st[i]++;
+        string aman;
+        for(auto i:order)
+        {
+            st1[i]++;
+            if(st.find(i)!=st.end())
+            {
+                while(st[i]>0)
+                {aman+=i;
+                st[i]--;
+                }
+            }
+        }
+        for(auto i:s)
+        {
+        if(st1.find(i)==st1.end())
+        {
+            while(st[i]>0)
+            {aman+=i;
+              st[i]--;
+            }
+        }
+        }
+         return aman;
+    }
+};
