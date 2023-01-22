@@ -1,0 +1,32 @@
+/* Submission is here:-https://leetcode.com/problems/max-area-of-island/submissions/883318422/*/
+
+class Solution {
+    int solvegrid(vector<vector<int>>&grid,int i,int j,int &count)
+    {
+        if(i<0 || j<0 || i>=grid.size()||j>=grid[0].size())return 0;
+        if(grid[i][j]==0)return 0;
+        grid[i][j]=0;
+         if(solvegrid(grid,i+1,j,count))count++;
+         if(solvegrid(grid,i-1,j,count))count++;
+         if(solvegrid(grid,i,j+1,count))count++;
+         if(solvegrid(grid,i,j-1,count))count++;
+  return 1;
+    }
+public:
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        int mx=0;
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[0].size();j++)
+            {
+                int count=1;
+                if(grid[i][j])
+                {
+                    solvegrid(grid,i,j,count);
+                    mx=max(count,mx);
+                }
+            }
+        }
+return mx;
+    }
+};
